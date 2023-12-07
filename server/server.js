@@ -23,10 +23,11 @@ app.use(bodyParser.json())
 app.use(express.static('server/public'));
 
 // ! Create array to store guesses on the server 
-let addGuess =[{}];
+let addGuess=[];
 let randomNumber = 0;
 // ! GET & POST Routes go here
 app.post('/submit', (rec, res) => {
+  
   console.log("POST on /",rec.body)//console log incoming guesses
   console.log("addGuess before push:", addGuess);//console.log addGuess before push 
   addGuess.push(rec.body);//push incoming guesses into addGuess
@@ -37,6 +38,7 @@ app.post('/submit', (rec, res) => {
 })
 
 app.get('/guesses', (req, res) => {
+  
   // When creating an endpoint first do a console log.
   console.log("Request for addGuess was made")
 

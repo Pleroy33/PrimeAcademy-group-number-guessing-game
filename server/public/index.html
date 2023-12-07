@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Guess A Number!</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
   <script defer src="scripts/client.js"></script>
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <h1>YOUR GAME HERE!</h1>
-    <form>
-      <input type="text" placeholder="Name" id="name">
-      <input type="number" placeholder="Guess" id="guess" >
-      <button onclick="" id="submitGuess">Submit</button>
+    <form onsubmit="handlePostRequest(event)">
+      <input type="text" placeholder="Name" id="name1">
+      <input type="number" placeholder="Guess" id="guess1" >
+      <input type="text" placeholder="Name" id="name2">
+      <input type="number" placeholder="Guess" id="guess2" >
+      <button id="submitGuess">Submit</button>
     </form>
     <ul id="previousGuesses">
       <!-- This is where our info will be placed after going through the server -->
