@@ -26,17 +26,17 @@ app.use(express.static('server/public'));
 let addGuess =[{}];
 let randomNumber = 0;
 // ! GET & POST Routes go here
-app.post('/addguess', (rec, res) => {
-  console.log("POST on /addquote",rec.body)//console log incoming guesses
+app.post('/submit', (rec, res) => {
+  console.log("POST on /",rec.body)//console log incoming guesses
   console.log("addGuess before push:", addGuess);//console.log addGuess before push 
   addGuess.push(rec.body);//push incoming guesses into addGuess
-  console.log("addGuess after push:", addGuess);//consoel log again to see that incoming guesses made it to addGuess
+  console.log("addGuess after push:", addGuess);//console log again to see that incoming guesses made it to addGuess
   
   res.sendStatus(201);//send http code for succes back to client
 
 })
 
-app.get('/addguess', (req, res) => {
+app.get('/guesses', (req, res) => {
   // When creating an endpoint first do a console log.
   console.log("Request for addGuess was made")
 
@@ -59,5 +59,7 @@ function getRandomInt(min, max) {
     return;
 }
 getRandomInt(1,25);
+
+
 
 
