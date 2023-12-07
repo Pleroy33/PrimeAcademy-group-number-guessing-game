@@ -1,16 +1,50 @@
+
+
+// ! Require in Express.
+
 const express = require('express');
+
+// ! Require in Body-Parser
 const bodyParser = require('body-parser')
+// ! Require in Express.
+
+// ! Create the server instance 
 const app = express();
-const PORT = 5000;
 
-// This must be added before GET & POST routes.
+//! set the port to a number, avoid 5000 for new macs
+const PORT = 5001;
+
+// ! This must be added before GET & POST routes.
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 
-// Serve up static files (HTML, CSS, Client JS)
+
+// ! Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
-// GET & POST Routes go here
+// !Create array to store guesses on the server 
+let addGuess =[{}];
+// ! GET & POST Routes go here
+app.post('/addguess', (rec, res) => {
+  console.log("POST on /addquote",rec.body)//console log incoming guesses
+  console.log("addGuess before push:", addGuess);//console.log addGuess before push 
+  addGuess.push(rec.body);//push incoming guesses into addGuess
+  console.log("addGuess after push:", addGuess);//consoel log again to see that incoming guesses made it to addGuess
+  
+  res.sendStatus(201);//send http code for succes back to client
 
+})
+
+app.get('/addguess', (req, res) => {
+  // When creating an endpoint first do a console log.
+  console.log("Request for addGuess was made")
+
+  // Responding will stop the code from running, similar to a return
+  // res.sendStatus(200)
+  res.send(addGuess)
+})
+
+// ! This code is responsible for making the actual server run.
 
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
