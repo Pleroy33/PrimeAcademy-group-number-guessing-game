@@ -22,8 +22,9 @@ app.use(bodyParser.json())
 // ! Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
-// !Create array to store guesses on the server 
+// ! Create array to store guesses on the server 
 let addGuess =[{}];
+let randomNumber = 0;
 // ! GET & POST Routes go here
 app.post('/addguess', (rec, res) => {
   console.log("POST on /addquote",rec.body)//console log incoming guesses
@@ -49,3 +50,14 @@ app.get('/addguess', (req, res) => {
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 })
+
+console.log('hello from randomNumber.js');
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return;
+}
+getRandomInt(1,25);
+
+
