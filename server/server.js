@@ -22,7 +22,7 @@ app.use(bodyParser.json())
 // ! Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
-// ! Create array to store guesses on the server 
+// ! Create array to store resultes on the server 
 let addGuess = [];
 let randomNumber = 0;
 // ! GET & POST Routes go here
@@ -30,9 +30,10 @@ app.post('/submit', (rec, res) => {
 
   console.log("POST on /", rec.body)//console log incoming guesses
   console.log("addGuess before push:", addGuess);//console.log addGuess before push 
+  checkGuesses(rec.body)
+  console.log(rec.body)
   addGuess.push(rec.body);//push incoming guesses into addGuess
   console.log("addGuess after push:", addGuess);//console log again to see that incoming guesses made it to addGuess
-  checkGuesses(rec.body,randomNumber);
   res.sendStatus(201);//send http code for succes back to client
 
 })
@@ -55,6 +56,7 @@ app.listen(PORT, () => {
 
 console.log('hello from randomNumber.js');
 function getRandomInt(min, max) {
+  console.log('get randomInt is working')
   min = Math.ceil(min);
   max = Math.floor(max);
   randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -76,20 +78,33 @@ function checkGuesses(input) {
 
   } 
   else if (input.player1.Guess < randomNumber) {
-    console.log('too low! Guess Again!')
+    input.player1.Guess.result = 'too low! Guess Again!'
+    console.log(input.player1.Guess.result)
   }
-  else if (input.player1.Guess > randoNumber)  {
-    console.log('too high! Guess Again!')
+  else if (input.player1.Guess > randomNumber)  {
+    input.player1.result = 'too high! Guess Again!'
+    console.log(input.player1.result)
+
   }
 
   if (input.player2.Guess == randomNumber) {
-    console.log('winner')
+    input.player2.result= 'winner'
+    console.log(input.player2.result)
+
   } 
-  else if (input.player2.Guess < randomNumber) {
-    console.log('too low!! Guess Again')
+  else if (input.player2.result < randomNumber) {
+    input.player2.result = 'too low!! Guess Again'
+    console.log(input.player2.result)
+
   }
-  else if (input.player2.Guess > randomNumber)  {
-    console.log('too high Guess Again')}}
+  else if (input.player2.result > randomNumber)  {
+    input.player2.result = 'too high Guess Again'
+    console.log(input.player2.result)
+  }
+
+  console.log('new',input)
+  return input
+  }
   
 
 
