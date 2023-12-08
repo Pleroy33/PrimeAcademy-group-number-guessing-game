@@ -9,29 +9,31 @@ function handlerGetGuesses() {
   }).then((response)=> {
       console.log(' get is successful!!', response.data);
 
-      document.getElementById('previousGuesses').innerHTML = `
-      <div>${ JSON.stringify(response.data)}</div>`
+      document.getElementById('tabledata').innerHTML = `
+      <table id="table data">${ JSON.stringify(response.data
+        )}</table>`
   })
   .catch((error) =>{
       console.log("server error :(", error);
 
   })
 }
-handlerGetGuesses();
 
+roundCount=1;
 function handlePostRequest(event) {
   console.log("handlePostSubmit has been clicked")
   event.preventDefault()
 
-  roundCount = 1
+  
+  
   //
   let name1 = document.getElementById('name1').value
   let guess1 = document.getElementById('guess1').value
   
   let name2 = document.getElementById('name2').value
   let guess2 = document.getElementById('guess2').value
-  console.log(name2, guess2)
-
+  //console.log(name2, guess2)
+  
   axios({
   method: 'POST',
   url: '/submit',
@@ -51,6 +53,8 @@ function handlePostRequest(event) {
   }
 })
 .then((response) =>{
+  
+  roundCount++;
   console.log('successfully submitted', response )
   
 })
@@ -58,6 +62,7 @@ function handlePostRequest(event) {
   console.log('error', error)
   
 })
+
 }
 
 onReady()

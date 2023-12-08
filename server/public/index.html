@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,37 @@
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
-    <h1>YOUR GAME HERE!</h1>
-    <form onsubmit="handlePostRequest(event)">
-      <input type="text" placeholder="Name" id="name1">
-      <input type="number" placeholder="Guess" id="guess1" >
-      <input type="text" placeholder="Name" id="name2">
-      <input type="number" placeholder="Guess" id="guess2" >
-      <button id="submitGuess">Submit</button>
-    </form>
-    <ul id="previousGuesses">
-      <!-- This is where our info will be placed after going through the server -->
-    </ul>
-    <div id="winner">
-      <!-- Winner message will populate here -->
-    </div>
+  <h1>YOUR GAME HERE!</h1>
+  <form onsubmit="handlePostRequest(event),handlerGetGuesses()">
+    <input type="text" placeholder="Name" id="name1">
+    <input type="number" placeholder="Guess" id="guess1">
+    <input type="text" placeholder="Name" id="name2">
+    <input type="number" placeholder="Guess" id="guess2">
+    <button id="submitGuess">Submit</button>
+  </form>
+  <!-- <ul id="tableData"> -->
+  <!-- This is where our info will be placed after going through the server -->
+  <!-- </ul> -->
+  <table id="tableData">
+    <thead>
+      <td>Player 1</td>
+      <td>Guess</td>
+      <td>Player 2</td>
+      <td></td>
+      <td>How Close?</td>
+      <td>Clear Form</td>
+
+
+    </thead>
+    <tbody>
+      <tr></tr>
+
+
+    </tbody>
+
+  </table>
 </body>
+
 </html>
